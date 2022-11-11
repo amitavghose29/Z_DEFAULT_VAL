@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="Select Subcategory" contentHeight="250px" contentWidth="400px">
+        <Table id="idSubcatTab" items="{/Subcat_SoSet}" mode="SingleSelectMaster" selectionChange="onSelectSubcategory">
+            <columns>
+                <Column>
+                    <Text text="Subcategory" />
+                </Column>
+                <Column>
+                    <Text text="Sequence Category" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{Subcat}" />
+                        <Text text="{SequenceCat}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <endButton>
+            <Button text="Close" press="onCloseSubcatDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

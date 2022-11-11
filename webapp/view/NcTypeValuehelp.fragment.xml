@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="Select Nc Type" contentHeight="250px" contentWidth="400px">
+        <Table id="idNcTypeTab" items="{/NCTYPE_SOSet}" mode="SingleSelectMaster" selectionChange="onSelectNcType">
+            <columns>
+                <Column>
+                    <Text text="NC Type" />
+                </Column>
+
+                <Column>
+                    <Text text="NC Type Description" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{Nctype}" />
+                        <Text text="{NctypeDesc}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <endButton>
+            <Button text="Close" press="onCloseNcTypeDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

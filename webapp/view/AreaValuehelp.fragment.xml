@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="Select Area" contentHeight="250px" contentWidth="400px">
+        <Table id="idAreaTab" items="{areaModel>/}" mode="SingleSelectMaster" selectionChange="onSelectArea">
+            <columns>
+                <Column>
+                    <Text text="Area" />
+                </Column>
+                <Column>
+                    <Text text="Sequence Area" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{areaModel>Value}" />
+                        <Text text="{areaModel>Description}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <endButton>
+            <Button text="Close" press="onCloseAreaDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

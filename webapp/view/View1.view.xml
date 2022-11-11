@@ -1,0 +1,26 @@
+<mvc:View controllerName="com.airbus.zdefaultval.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" emptySpanL="5">
+                <f:content>
+                    <Label text="NC Type" />
+                    <Input id="idInpNcType" showValueHelp="true" valueHelpRequest="onNCTypeValuhelp" />
+                    <Label text="Area" />
+                    <Input id="idInpArea" showValueHelp="true" valueHelpRequest="onAreaValuhelp" />
+                    <Label text="Subcategory" />
+                    <Input id="idInpSubcat" showValueHelp="true" valueHelpRequest="onSubCatValuhelp" />
+                    <Label />
+                    <CheckBox id="idChkBxNA" text="Notification Active" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button text="Save" type="Emphasized" press="onPressSave" />
+                    <Button text="Cancel" press="onPressCancel" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>
