@@ -106,22 +106,55 @@ sap.ui.define([
             },
             onSelectArea: function (oEvent) {
                 //var area = oEvent.getParameter("listItem").getBindingContext().getProperty("Area");
-                var area = oEvent.getParameters("selectedItem").listItem.getBindingContext("areaModel").getProperty("Description")
+                var area = oEvent.getParameters("selectedItem").listItem.getBindingContext("areaModel").getProperty("Description");
                 this.getView().byId("idInpArea").setValue(area);
                 this.AreaDialog.close();
             },
             onSubCatValuhelp: function () {
-                if (!this.SubcatDialog) {
-                    this.SubcatDialog = sap.ui.xmlfragment(this.getView().getId(), "com.airbus.zdefaultval.view.SubCategoryValuehelp", this);
-                    this.getView().addDependent(this.SubcatDialog);
+                var nctype = this.getView().byId("idInpNcType").getValue();
+                if(nctype != "")
+                {
+                    if (!this.SubcatDialog) {
+                        this.SubcatDialog = sap.ui.xmlfragment(this.getView().getId(), "com.airbus.zdefaultval.view.SubCategoryValuehelp", this);
+                        this.getView().addDependent(this.SubcatDialog);
+                    }
+                    this.SubcatDialog.open();
+    
+                    sap.ui.core.BusyIndicator.show();
+                    var oModel = new JSONModel();
+                    oModel.setSizeLimit(10000);
+                    var oDataModel = this.getOwnerComponent().getModel();
+                    var aFilter = [];
+                   
+                    aFilter.push(new Filter("NcType", FilterOperator.EQ, nctype));
+                    var sPath = "/Subcat_SoSet"
+                    oDataModel.read(sPath, {
+                        filters: aFilter,
+                        success: function (oData, oResult) {
+                            sap.ui.core.BusyIndicator.hide();
+                            var data = oData.results;
+                            oModel.setData(data);
+                            this.getView().setModel(oModel, "subcatModel");
+                        }.bind(this),
+                        error: function (oError) {
+                            sap.ui.core.BusyIndicator.hide();
+                            var msg = JSON.parse(oError.responseText).error.message.value;
+                            MessageBox.error(msg);
+                        }
+                    });
+                }else{
+                    MessageBox.error("Please select NcType");
                 }
-                this.SubcatDialog.open();
+
+                
             },
             onCloseSubcatDialog: function () {
                 this.SubcatDialog.close();
             },
             onSelectSubcategory: function (oEvent) {
-                var subcat = oEvent.getParameter("listItem").getBindingContext().getProperty("Subcat");
+                //var subcat = oEvent.getParameter("listItem").getBindingContext().getProperty("Subcat");
+                var subcat = oEvent.getParameters("selectedItem").listItem.getBindingContext("subcatModel").getProperty("Subcat");
+
                 this.getView().byId("idInpSubcat").setValue(subcat);
                 this.SubcatDialog.close();
             },

@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
     <Dialog title="Select Subcategory" contentHeight="250px" contentWidth="400px">
-        <Table id="idSubcatTab" items="{/Subcat_SoSet}" mode="SingleSelectMaster" selectionChange="onSelectSubcategory">
+        <Table id="idSubcatTab" items="{subcatModel>/}" mode="SingleSelectMaster" selectionChange="onSelectSubcategory">
             <columns>
                 <Column>
                     <Text text="Subcategory" />
@@ -12,8 +12,8 @@
             <items>
                 <ColumnListItem>
                     <cells>
-                        <Text text="{Subcat}" />
-                        <Text text="{SequenceCat}" />
+                        <Text text="{subcatModel>Subcat}" />
+                        <Text text="{subcatModel>SequenceCat}" />
                     </cells>
                 </ColumnListItem>
             </items>
