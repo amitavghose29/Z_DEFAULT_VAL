@@ -114,11 +114,7 @@ sap.ui.define([
                 var nctype = this.getView().byId("idInpNcType").getValue();
                 if(nctype != "")
                 {
-                    if (!this.SubcatDialog) {
-                        this.SubcatDialog = sap.ui.xmlfragment(this.getView().getId(), "com.airbus.zdefaultval.view.SubCategoryValuehelp", this);
-                        this.getView().addDependent(this.SubcatDialog);
-                    }
-                    this.SubcatDialog.open();
+                    
     
                     sap.ui.core.BusyIndicator.show();
                     var oModel = new JSONModel();
@@ -142,6 +138,11 @@ sap.ui.define([
                             MessageBox.error(msg);
                         }
                     });
+                    if (!this.SubcatDialog) {
+                        this.SubcatDialog = sap.ui.xmlfragment(this.getView().getId(), "com.airbus.zdefaultval.view.SubCategoryValuehelp", this);
+                        this.getView().addDependent(this.SubcatDialog);
+                    }
+                    this.SubcatDialog.open();
                 }else{
                     MessageBox.error("Please select NcType");
                 }
