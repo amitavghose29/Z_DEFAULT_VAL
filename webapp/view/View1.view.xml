@@ -10,7 +10,7 @@
                     <Label text="Subcategory" />
                     <Input id="idInpSubcat" showValueHelp="true" valueHelpRequest="onSubCatValuhelp" />
                     <Label />
-                    <CheckBox id="idChkBxNA" text="Notification Active" />
+                    <CheckBox id="idChkBxNA" text="Email Notification Active" />
                 </f:content>
             </f:SimpleForm>
         </content>
